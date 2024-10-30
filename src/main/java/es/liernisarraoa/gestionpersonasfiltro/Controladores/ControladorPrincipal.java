@@ -91,7 +91,8 @@ public class ControladorPrincipal implements Initializable {
         modalAniadir.setTitle("Agregar Persona");
         modalAniadir.getIcons().add(new Image(String.valueOf(GestionPersonas.class.getResource("/Imagenes/agenda.png"))));
         modalAniadir.showAndWait();
-        //items = tablaPersonas.getItems();
+        items = DaoPersonas.cargarListado();
+        tablaPersonas.getItems().setAll(items);
     }
 
     /**
@@ -123,8 +124,7 @@ public class ControladorPrincipal implements Initializable {
         modalModificar.setTitle("Modificar persona");
         modalModificar.getIcons().add(new Image(String.valueOf(GestionPersonas.class.getResource("/Imagenes/agenda.png"))));
         modalModificar.showAndWait();
-        items = DaoPersonas.cargarListado();
-        tablaPersonas.getItems().addAll(items);
+
     }
 
     /**
