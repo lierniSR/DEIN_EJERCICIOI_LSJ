@@ -77,18 +77,6 @@
                   <Insets right="10.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <!-- Boton exportar CSV -->
-            <Button fx:id="btnExportar" mnemonicParsing="false" onAction="#exportarCSV" text="Exportar" HBox.hgrow="ALWAYS">
-               <HBox.margin>
-                  <Insets right="10.0" top="10.0" />
-               </HBox.margin>
-            </Button>
-            <!-- Boton importar CSV -->
-            <Button fx:id="btnImportar" mnemonicParsing="false" onAction="#importarCSV" text="Importar" HBox.hgrow="ALWAYS">
-               <HBox.margin>
-                  <Insets top="10.0" />
-               </HBox.margin>
-            </Button>
          </children>
       </HBox>
    </bottom>

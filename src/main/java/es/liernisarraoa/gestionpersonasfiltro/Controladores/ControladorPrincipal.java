@@ -1,5 +1,6 @@
 package es.liernisarraoa.gestionpersonasfiltro.Controladores;
 
+import es.liernisarraoa.gestionpersonasfiltro.Dao.DaoPersonas;
 import es.liernisarraoa.gestionpersonasfiltro.GestionPersonas;
 import es.liernisarraoa.gestionpersonasfiltro.Modelo.Personas;
 import javafx.collections.FXCollections;
@@ -90,7 +91,7 @@ public class ControladorPrincipal implements Initializable {
         modalAniadir.setTitle("Agregar Persona");
         modalAniadir.getIcons().add(new Image(String.valueOf(GestionPersonas.class.getResource("/Imagenes/agenda.png"))));
         modalAniadir.showAndWait();
-        items = tablaPersonas.getItems();
+        //items = tablaPersonas.getItems();
     }
 
     /**
@@ -122,7 +123,8 @@ public class ControladorPrincipal implements Initializable {
         modalModificar.setTitle("Modificar persona");
         modalModificar.getIcons().add(new Image(String.valueOf(GestionPersonas.class.getResource("/Imagenes/agenda.png"))));
         modalModificar.showAndWait();
-        items = tablaPersonas.getItems();
+        items = DaoPersonas.cargarListado();
+        tablaPersonas.getItems().addAll(items);
     }
 
     /**
@@ -150,113 +152,6 @@ public class ControladorPrincipal implements Initializable {
         alert.showAndWait();
     }
 
-    /**
-     * Muestra un cuadro de dialogo para seleccionar ruta donde querer guardar archivo CSV
-     *
-     * @param actionEvent
-     */
-    public void exportarCSV(ActionEvent actionEvent) {
-        dialogoFicheroSave.setTitle("Guardar archivo");
-        dialogoFicheroSave.setInitialDirectory(new File("C:\\DM2\\DEIN\\ProyectosFX\\GestionPersonasFiltro"));
-        dialogoFicheroSave.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos CSV", "*.csv"));
-        dialogoFicheroSave.setInitialFileName("personas"+cont+".csv");
-        cont++;
-        File file = dialogoFicheroSave.showSaveDialog(stagePrincipal);
-        if (file == null) {
-            return;
-        }
-        try {
-            // Write the HTML contents to the file. Overwrite the existing file.
-            Files.write(file.toPath(), generarValorFichero().getBytes());
-            alertaExportarCorrecto();
-        }catch(IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Genera el valor que contendra el archivo .CSV
-     */
-    private String generarValorFichero() {
-        String texto = "Nombre, Apellido, Edad\n";
-        for(Personas p : items){
-            texto += p.getNombre() + "," + p.getApellido() + "," + p.getEdad() + "\n";
-        }
-        return texto;
-    }
-
-    /**
-     * Este es el escuchador del Boton importar, que sale un dialogo para seleccionar archivo a importar.
-     *
-     * @param actionEvent
-     */
-    public void importarCSV(ActionEvent actionEvent) {
-        dialogoFicheroSave.setTitle("Abrir archivo");
-        dialogoFicheroSave.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos CSV", "*.csv"));
-        dialogoFicheroSave.setInitialDirectory(new File("C:\\DM2\\DEIN\\ProyectosFX\\GestionPersonasFiltro")); //Esto lo hago para ahorrarme tiempo en la spruebas, en realidad no hace falta
-        File file = dialogoFicheroSave.showOpenDialog(stagePrincipal);
-        if (file == null) {
-            return;
-        }
-        try {
-            // Read the file and populate the HTMLEditor
-            byte[] resume = Files.readAllBytes(file.toPath());
-            String[] personas = new String(resume).split("\n");
-            generarPersonasEnTabla(personas);
-            alertaImportarCorrecto();
-        }catch(IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Muestra una alerta informando que la exportacion ha sido correcta.
-     */
-    private void alertaExportarCorrecto() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        alert.setTitle("Archivo exportado");
-        alert.setContentText("El archivo CSV se ha guardado correctamente.");
-        alert.showAndWait();
-    }
-
-    /**
-     * Muestra una alerta informando que la importacion ha sido correcta.
-     */
-    private void alertaImportarCorrecto() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        alert.setTitle("Archivo importado");
-        alert.setContentText("El archivo CSV se ha cargado correctamente.");
-        alert.showAndWait();
-    }
-
-    /**
-     * Genera la lista y luego la añade a la tabla. La lista se genera con la informacion del CSV que se importa
-     *
-     * @param personas
-     */
-    private void generarPersonasEnTabla(String[] personas) {
-        for(int i = 1; i < personas.length; i++){
-            String[] persona = personas[i].split(",");
-            Personas p = new Personas(persona[0], persona[1], Integer.parseInt(persona[2]));
-            if(items.contains(p)){
-                alertaErrorExportar(p);
-            } else{
-                items.add(new Personas(persona[0], persona[1], Integer.parseInt(persona[2])));
-            }
-        }
-        tablaPersonas.getItems().removeAll();
-        tablaPersonas.setItems(items);
-    }
-
-    private void alertaErrorExportar(Personas p) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText(null);
-        alert.setTitle("Persona no añadida");
-        alert.setContentText("La siguiente persona no se ha podido exportar:\n" + p.getNombre() + "\n" + p.getApellido() + "\n" + p.getEdad());
-        alert.showAndWait();
-    }
 
     /**
      * Maneja el evento de filtrar una persona de la tabla.
@@ -299,6 +194,8 @@ public class ControladorPrincipal implements Initializable {
         columnaNombre.prefWidthProperty().bind(tablaPersonas.widthProperty().multiply(0.4));
         columnaApellido.prefWidthProperty().bind(tablaPersonas.widthProperty().multiply(0.4));
         columnaEdad.prefWidthProperty().bind(tablaPersonas.widthProperty().multiply(0.2));
+        items = DaoPersonas.cargarListado();
+        tablaPersonas.getItems().addAll(items);
     }
 
     /**

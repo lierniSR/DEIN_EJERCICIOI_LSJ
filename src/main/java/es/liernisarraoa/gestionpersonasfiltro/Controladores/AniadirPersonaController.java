@@ -1,5 +1,6 @@
 package es.liernisarraoa.gestionpersonasfiltro.Controladores;
 
+import es.liernisarraoa.gestionpersonasfiltro.Dao.DaoPersonas;
 import es.liernisarraoa.gestionpersonasfiltro.Modelo.Personas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,10 +46,17 @@ public class AniadirPersonaController {
         if(errores.isEmpty()){
             personaAgregada = new Personas(nombreTextField.getText(), apellidoTextField.getText(), Integer.valueOf(edadTextField.getText()));
             if (!tablaPersonas.getItems().contains(personaAgregada) && personaAgregada != null) {
-                alertaAniadirPersona();
-                tablaPersonas.getItems().add(personaAgregada);
-                tablaPersonas.getSelectionModel().clearSelection();
-                ((Stage) nombreTextField.getScene().getWindow()).close();
+                boolean agregada = DaoPersonas.aniadirPersona(nombreTextField.getText(), apellidoTextField.getText(), Integer.valueOf(edadTextField.getText()));
+                if(agregada){
+                    alertaAniadirPersona();
+                    ((Stage) nombreTextField.getScene().getWindow()).close();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Error al intentar añadir la persona a la Base de Datos.");
+                    alert.showAndWait();
+                }
             } else {
                 if(personaAgregada != null){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
