@@ -43,11 +43,9 @@ public class ControladorPrincipal implements Initializable {
     private Stage modalAniadir;
     private Scene sceneModificar;
     private Stage modalModificar;
-    private static Stage stagePrincipal;
     private Personas p;
     private ObservableList<Personas> items = FXCollections.observableArrayList();
-    private FileChooser dialogoFicheroSave = new FileChooser();
-    private int cont = 1;
+    private ResourceBundle bundle;
 
     /** Tabla que muestra la lista de personas. */
     @FXML
@@ -72,6 +70,27 @@ public class ControladorPrincipal implements Initializable {
     /** ImageView para la imagen antes del filtrado */
     @FXML
     private ImageView imagenContactos;
+
+    @FXML
+    private Button btnES;
+
+    @FXML
+    private Button btnEU;
+
+    @FXML
+    private Button btnEN;
+
+    @FXML
+    private Button btnAgregarPersona;
+
+    @FXML
+    private Button btnModificarPersona;
+
+    @FXML
+    private Button btnEliminarPersona;
+
+    @FXML
+    private Label lblFiltro;
 
     /**
      * Maneja el evento de agregar una nueva persona.
@@ -209,6 +228,45 @@ public class ControladorPrincipal implements Initializable {
         tablaPersonas.getItems().addAll(items);
         Image imagen = new Image(String.valueOf(GestionPersonas.class.getResource("/Imagenes/contactos.jpeg")));
         imagenContactos.setImage(imagen);
+        btnEN.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                bundle = ResourceBundle.getBundle("messages_en");
+                lblFiltro.setText(bundle.getString("texto.filtro"));
+                columnaNombre.setText(bundle.getString("columna.nombre"));
+                columnaApellido.setText(bundle.getString("columna.apellido"));
+                columnaEdad.setText(bundle.getString("columna.edad"));
+                btnAgregarPersona.setText(bundle.getString("boton.aniadir"));
+                btnModificarPersona.setText(bundle.getString("boton.modificar"));
+                btnEliminarPersona.setText(bundle.getString("boton.eliminar"));
+            }
+        });
+        btnES.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                bundle = ResourceBundle.getBundle("messages_es");
+                lblFiltro.setText(bundle.getString("texto.filtro"));
+                columnaNombre.setText(bundle.getString("columna.nombre"));
+                columnaApellido.setText(bundle.getString("columna.apellido"));
+                columnaEdad.setText(bundle.getString("columna.edad"));
+                btnAgregarPersona.setText(bundle.getString("boton.aniadir"));
+                btnModificarPersona.setText(bundle.getString("boton.modificar"));
+                btnEliminarPersona.setText(bundle.getString("boton.eliminar"));
+            }
+        });
+        btnEU.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                bundle = ResourceBundle.getBundle("messages_eu");
+                lblFiltro.setText(bundle.getString("texto.filtro"));
+                columnaNombre.setText(bundle.getString("columna.nombre"));
+                columnaApellido.setText(bundle.getString("columna.apellido"));
+                columnaEdad.setText(bundle.getString("columna.edad"));
+                btnAgregarPersona.setText(bundle.getString("boton.aniadir"));
+                btnModificarPersona.setText(bundle.getString("boton.modificar"));
+                btnEliminarPersona.setText(bundle.getString("boton.eliminar"));
+            }
+        });
     }
 
     private ContextMenu prepararMenu() {
@@ -276,14 +334,6 @@ public class ControladorPrincipal implements Initializable {
         alertaEliminar();
     }
 
-    /**
-     * Asigna el valor stage que se pasa al atributo stagePrincipal de la clase ControladorPrincipal
-     *
-     * @param stage
-     */
-    public static void setStagePrincipal(Stage stage){
-        stagePrincipal = stage;
-    }
 
     public void alClicar(MouseEvent mouseEvent) {
         ContextMenu menu = prepararMenu();

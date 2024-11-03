@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 /**
  * Clase principal de la aplicación de Gestión de Personas.
@@ -43,9 +44,6 @@ public class GestionPersonas extends Application {
 
         // Muestra la ventana
         stage.show();
-
-        //Pasar al controlador la escena principal
-        ControladorPrincipal.setStagePrincipal(stage);
     }
 
     /**

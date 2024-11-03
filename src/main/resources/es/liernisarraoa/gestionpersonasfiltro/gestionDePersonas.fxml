@@ -26,7 +26,7 @@
             </HBox.margin>
          </ImageView>
          <!-- Etiqueta para el filtrado de nombre -->
-         <Label prefHeight="20.0" prefWidth="128.0" text="Filtrar por nombre:" HBox.hgrow="ALWAYS">
+         <Label fx:id = "lblFiltro" prefHeight="20.0" prefWidth="128.0" text="Filtrar por nombre:" HBox.hgrow="ALWAYS">
             <font>
                <Font size="14.0" />
             </font>
@@ -80,6 +80,21 @@
             </Button>
             <!-- Boton eliminar persona -->
             <Button fx:id="btnEliminarPersona" mnemonicParsing="false" onAction="#eliminarPersona" text="Eliminar Persona" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnES" mnemonicParsing="false" text="ES" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnEU" mnemonicParsing="false" text="EU" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnEN" mnemonicParsing="false" text="EN" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="10.0" top="10.0" />
                </HBox.margin>
