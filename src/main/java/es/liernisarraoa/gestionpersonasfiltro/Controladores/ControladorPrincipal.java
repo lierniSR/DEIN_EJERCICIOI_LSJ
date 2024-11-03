@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
@@ -64,6 +65,10 @@ public class ControladorPrincipal implements Initializable {
     /** TexField para el nombre del filtrado */
     @FXML
     private TextField nombreFiltradoTextField;
+
+    /** ImageView para la imagen antes del filtrado */
+    @FXML
+    private ImageView imagenContactos;
 
     /**
      * Maneja el evento de agregar una nueva persona.
@@ -199,6 +204,8 @@ public class ControladorPrincipal implements Initializable {
         columnaEdad.prefWidthProperty().bind(tablaPersonas.widthProperty().multiply(0.2));
         items = DaoPersonas.cargarListado();
         tablaPersonas.getItems().addAll(items);
+        Image imagen = new Image(String.valueOf(GestionPersonas.class.getResource("/Imagenes/contactos.jpeg")));
+        imagenContactos.setImage(imagen);
     }
 
     /**

@@ -14,10 +14,17 @@
 
 <!-- Definición del contenedor principal BorderPane -->
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.liernisarraoa.gestionpersonasfiltro.Controladores.ControladorPrincipal">
+<?import javafx.scene.image.ImageView?>
+<BorderPane stylesheets="@../../../CSS/estilos.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.liernisarraoa.gestionpersonasfiltro.Controladores.ControladorPrincipal">
    <!-- Región de la parte de arriba del BorderPane -->
    <top>
       <HBox prefHeight="42.0" prefWidth="600.0">
+         <!--Etiqueta para la imagen -->
+         <ImageView fx:id = "imagenContactos" fitHeight="50" fitWidth="50">
+            <HBox.margin>
+               <Insets left="20.0" top="10.0" />
+            </HBox.margin>
+         </ImageView>
          <!-- Etiqueta para el filtrado de nombre -->
          <Label prefHeight="20.0" prefWidth="128.0" text="Filtrar por nombre:" HBox.hgrow="ALWAYS">
             <font>
