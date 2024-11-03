@@ -45,7 +45,7 @@
    <!-- Región central del BorderPane -->
    <center>
       <!-- TableView para mostrar la lista de personas -->
-      <TableView fx:id="tablaPersonas" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tablaPersonas" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER" onMouseClicked="#alClicar">
          <columns>
             <!-- Columna para el nombre de la persona -->
             <TableColumn id="nombre" fx:id="columnaNombre" maxWidth="Infinity" minWidth="140.0" prefWidth="202.0" text="Nombre" />

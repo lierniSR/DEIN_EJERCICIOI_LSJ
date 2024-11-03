@@ -6,6 +6,7 @@ import es.liernisarraoa.gestionpersonasfiltro.Modelo.Personas;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,6 +18,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -208,6 +211,71 @@ public class ControladorPrincipal implements Initializable {
         imagenContactos.setImage(imagen);
     }
 
+    private ContextMenu prepararMenu() {
+        //Creamos un menu contextual y los elementos del menu
+        ContextMenu menu = new ContextMenu();
+        MenuItem modificar = new MenuItem("Modificar");
+        //Escuchador
+        modificar.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    modificarPersonaMenu();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        MenuItem eliminar = new MenuItem("Eliminar");
+        //Escuchador
+        eliminar.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                eliminarPersonaMenu();
+            }
+        });
+
+        //Añadimos elementos del menu al menu contextual
+        menu.getItems().addAll(modificar, eliminar);
+
+        return menu;
+    }
+
+    private void modificarPersonaMenu() throws IOException {
+        //Esto si el controlador necesita hacer algo en la ventana principal
+        // Cargar el FXML de la ventana modal
+        FXMLLoader loader = new FXMLLoader(GestionPersonas.class.getResource("modificarPersona.fxml"));
+        Parent root = loader.load();
+
+        p = tablaPersonas.getSelectionModel().getSelectedItem();
+        // Obtener el controlador de la ventana modal
+        ModificarPersonaController modalControlador = loader.getController();
+
+        // Pasar el TableView al controlador de la ventana modal
+        modalControlador.setP(p);
+        modalControlador.setTabla(tablaPersonas);
+
+        // Crear y mostrar la ventana modal
+        modalModificar = new Stage();
+        sceneModificar = new Scene(root);
+        modalModificar.setScene(sceneModificar);
+        modalModificar.initModality(Modality.APPLICATION_MODAL);
+        modalModificar.setTitle("Modificar persona");
+        modalModificar.getIcons().add(new Image(String.valueOf(GestionPersonas.class.getResource("/Imagenes/agenda.png"))));
+        modalModificar.showAndWait();
+        items = DaoPersonas.cargarListado();
+        tablaPersonas.getItems().setAll(items);
+    }
+
+    private void eliminarPersonaMenu(){
+        Personas personaEliminar = tablaPersonas.getSelectionModel().getSelectedItem();
+        tablaPersonas.getSelectionModel().clearSelection();
+        DaoPersonas.eliminarPersona(personaEliminar);
+        items = DaoPersonas.cargarListado();
+        tablaPersonas.getItems().setAll(items);
+        alertaEliminar();
+    }
+
     /**
      * Asigna el valor stage que se pasa al atributo stagePrincipal de la clase ControladorPrincipal
      *
@@ -215,5 +283,14 @@ public class ControladorPrincipal implements Initializable {
      */
     public static void setStagePrincipal(Stage stage){
         stagePrincipal = stage;
+    }
+
+    public void alClicar(MouseEvent mouseEvent) {
+        ContextMenu menu = prepararMenu();
+        tablaPersonas.setContextMenu(menu);
+        //Si se pulsa la derecha se muestra  si no, no se muestra
+        if(mouseEvent.getButton() == MouseButton.SECONDARY){
+            menu.show(tablaPersonas, mouseEvent.getSceneX(), mouseEvent.getSceneY());
+        }
     }
 }
