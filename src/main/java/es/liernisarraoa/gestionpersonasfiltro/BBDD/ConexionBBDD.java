@@ -13,7 +13,11 @@ import java.sql.SQLException;
  */
 public class ConexionBBDD {
     private final Connection conexion;
-
+    /**
+     * Método que inicia la conexion a la base de datos
+     *
+     * @throws SQLException Si ocurre un error al hacer la conexion.
+     */
     public ConexionBBDD() throws SQLException {
         // los parametros de la conexion
         Properties connConfig = new Properties();
@@ -23,9 +27,17 @@ public class ConexionBBDD {
         conexion = DriverManager.getConnection("jdbc:mariadb://127.0.0.1/personas?serverTimezone=Europe/Madrid", connConfig);
         conexion.setAutoCommit(true);
     }
-
+    /**
+     * Obtiene la conexion
+     *
+     * @return la conexion de la bbdd
+     */
     public Connection getConexion(){return this.conexion;}
-
+    /**
+     * Metodo para cerrar la conexion
+     *
+     * @return la conexion de la bbdd cerrada
+     */
     public Connection cerrarConexion(){
         try {
             conexion.close();

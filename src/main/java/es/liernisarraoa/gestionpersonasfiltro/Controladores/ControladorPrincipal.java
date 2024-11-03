@@ -29,6 +29,7 @@ import java.util.ResourceBundle;
 /**
  * Controlador principal de la aplicación de gestión de personas.
  * Maneja la interfaz principal y las operaciones sobre la tabla de personas.
+ * Todas las acciones se hace mediante una base de datos.
  *
  * @author Lierni
  * @version 1.0

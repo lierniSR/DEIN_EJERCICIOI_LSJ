@@ -1,4 +1,6 @@
 module:es.liernisarraoa.gestionpersonasfiltro
 es.liernisarraoa.gestionpersonasfiltro
+es.liernisarraoa.gestionpersonasfiltro.BBDD
 es.liernisarraoa.gestionpersonasfiltro.Controladores
+es.liernisarraoa.gestionpersonasfiltro.Dao
 es.liernisarraoa.gestionpersonasfiltro.Modelo

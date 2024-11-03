@@ -8,10 +8,20 @@ import javafx.collections.ObservableList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+/**
+ * Clase para las consultas de la base de datos.
+ *
+ * @author Lierni
+ * @version 1.0
+ */
 public class DaoPersonas {
     private static ConexionBBDD conexion;
 
+    /**
+     * Metodo que obtiene una lista de los datos de la base de datos.
+     *
+     * @return ObservableList de personas que es un listado de personas de la bbdd.
+     */
     public static ObservableList<Personas> cargarListado(){
 
         ObservableList<Personas> listaPersonas = FXCollections.observableArrayList();
@@ -33,6 +43,11 @@ public class DaoPersonas {
         return listaPersonas;
     }
 
+    /**
+     * Metodo que añade una persona a la base de datos
+     *
+     * @return boolean true si se ha añadido false si no ha podido ser.
+     */
     public static boolean aniadirPersona(Personas p){
         try {
             conexion = new ConexionBBDD();
@@ -50,6 +65,11 @@ public class DaoPersonas {
         }
     }
 
+    /**
+     * Metodo que modifica una persona a la base de datos
+     *
+     * @return boolean true si se ha modificado false si no ha podido ser.
+     */
     public static boolean modificarPersona(Personas p, String nombre, String apellido, Integer edad){
         try {
             conexion = new ConexionBBDD();
@@ -68,6 +88,10 @@ public class DaoPersonas {
         }
     }
 
+    /**
+     * Metodo que elimina una persona a la base de datos
+     *
+     */
     public static void eliminarPersona(Personas p){
         String sql = "DELETE FROM personas.persona WHERE id = ?";
         try {

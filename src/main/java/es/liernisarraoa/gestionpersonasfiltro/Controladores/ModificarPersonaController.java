@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 /**
  * Controlador de la ventana modal de modificar persona.
+ * Todas los metodos están hechas partiendo de una base de datos.
  *
  * @author Lierni
  * @version 1.0

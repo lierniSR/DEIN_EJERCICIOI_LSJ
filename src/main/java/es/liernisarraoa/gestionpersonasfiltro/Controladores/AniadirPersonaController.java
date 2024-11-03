@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 /**
  * Controlador de la ventana modal de añadir persona.
+ * Todas los metodos están hechas partiendo de una base de datos.
  *
  * @author Lierni
  * @version 1.0

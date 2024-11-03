@@ -79,7 +79,11 @@ public class Personas {
     public void setEdad(Integer edad){
         this.edad = edad;
     }
-
+    /**
+     * Obtiene el Identificador de la persona.
+     *
+     * @return el identificador de la persona
+     */
     public Integer getId(){
         return id;
     }
