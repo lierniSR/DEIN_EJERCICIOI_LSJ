@@ -124,7 +124,8 @@ public class ControladorPrincipal implements Initializable {
         modalModificar.setTitle("Modificar persona");
         modalModificar.getIcons().add(new Image(String.valueOf(GestionPersonas.class.getResource("/Imagenes/agenda.png"))));
         modalModificar.showAndWait();
-
+        items = DaoPersonas.cargarListado();
+        tablaPersonas.getItems().setAll(items);
     }
 
     /**
@@ -136,8 +137,9 @@ public class ControladorPrincipal implements Initializable {
     public void eliminarPersona(ActionEvent actionEvent) {
         Personas personaEliminar = tablaPersonas.getSelectionModel().getSelectedItem();
         tablaPersonas.getSelectionModel().clearSelection();
-        tablaPersonas.getItems().remove(personaEliminar);
-        items = tablaPersonas.getItems();
+        DaoPersonas.eliminarPersona(personaEliminar);
+        items = DaoPersonas.cargarListado();
+        tablaPersonas.getItems().setAll(items);
         alertaEliminar();
     }
 

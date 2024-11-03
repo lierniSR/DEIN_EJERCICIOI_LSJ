@@ -44,9 +44,10 @@ public class AniadirPersonaController {
     public void guardarPersona(ActionEvent actionEvent) {
         verificacionPersona();
         if(errores.isEmpty()){
-            personaAgregada = new Personas(nombreTextField.getText(), apellidoTextField.getText(), Integer.valueOf(edadTextField.getText()));
+            Integer id = tablaPersonas.getItems().getLast().getId() + 1;
+            personaAgregada = new Personas(id, nombreTextField.getText(), apellidoTextField.getText(), Integer.valueOf(edadTextField.getText()));
             if (!tablaPersonas.getItems().contains(personaAgregada) && personaAgregada != null) {
-                boolean agregada = DaoPersonas.aniadirPersona(nombreTextField.getText(), apellidoTextField.getText(), Integer.valueOf(edadTextField.getText()));
+                boolean agregada = DaoPersonas.aniadirPersona(personaAgregada);
                 if(agregada){
                     alertaAniadirPersona();
                     ((Stage) nombreTextField.getScene().getWindow()).close();

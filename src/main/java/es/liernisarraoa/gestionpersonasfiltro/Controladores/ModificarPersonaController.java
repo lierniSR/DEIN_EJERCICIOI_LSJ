@@ -1,5 +1,6 @@
 package es.liernisarraoa.gestionpersonasfiltro.Controladores;
 
+import es.liernisarraoa.gestionpersonasfiltro.Dao.DaoPersonas;
 import es.liernisarraoa.gestionpersonasfiltro.Modelo.Personas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,13 +38,22 @@ public class ModificarPersonaController {
     public void guardarPersona(ActionEvent actionEvent) {
         verificacionPersona();
         if(errores.isEmpty()){
-            Personas personaModificar = new Personas(nombreTextField.getText(), apellidoTextField.getText(), Integer.parseInt(edadTextField.getText()));
-            if(p != null && !tabla.getItems().contains(personaModificar)){
-                alertaModificarPersona();
-                tabla.getItems().remove(p);
-                tabla.getItems().add(personaModificar);
-                tabla.getSelectionModel().clearSelection();
-                ((Stage) nombreTextField.getScene().getWindow()).close();
+            String nombreUpdate = nombreTextField.getText();
+            String apellidosUpdate = apellidoTextField.getText();
+            Integer edadUpdate = Integer.parseInt(edadTextField.getText());
+            if(p != null && !tabla.getItems().contains(new Personas(p.getId(), nombreUpdate,apellidosUpdate,edadUpdate))){
+                boolean update = DaoPersonas.modificarPersona(p, nombreUpdate, apellidosUpdate, edadUpdate);
+                if(update){
+                    alertaModificarPersona();
+                    //tabla.getSelectionModel().clearSelection();
+                    ((Stage) nombreTextField.getScene().getWindow()).close();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Error al intentar modificar la persona a la Base de Datos.");
+                    alert.showAndWait();
+                }
             }else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);

@@ -7,6 +7,7 @@ package es.liernisarraoa.gestionpersonasfiltro.Modelo;
  * @version 1.0
  */
 public class Personas {
+    private Integer id = 1;
     private String nombre;
     private String apellido;
     private Integer edad;
@@ -18,7 +19,8 @@ public class Personas {
      * @param apellido el apellido de la persona
      * @param edad    la edad de la persona
      */
-    public Personas(String nombre, String apellido, Integer edad){
+    public Personas(Integer id, String nombre, String apellido, Integer edad){
+        this.id  = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
@@ -76,6 +78,10 @@ public class Personas {
      */
     public void setEdad(Integer edad){
         this.edad = edad;
+    }
+
+    public Integer getId(){
+        return id;
     }
 
     /**
