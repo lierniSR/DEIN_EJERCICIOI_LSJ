@@ -71,33 +71,43 @@ public class ControladorPrincipal implements Initializable {
     @FXML
     private ImageView imagenContactos;
 
+    /** Boton cambiar idioma ES */
     @FXML
     private Button btnES;
 
+    /** Boton cambiar idioma EU */
     @FXML
     private Button btnEU;
 
+    /** Boton cambiar idioma EN */
     @FXML
     private Button btnEN;
 
+    /** Boton añadir persona */
     @FXML
     private Button btnAgregarPersona;
 
+    /** Boton modificar persona */
     @FXML
     private Button btnModificarPersona;
 
+    /** Boton eliminar persona*/
     @FXML
     private Button btnEliminarPersona;
 
+    /** Label para el filtrado */
     @FXML
     private Label lblFiltro;
 
+    /** Tooltip para buttonEU */
     @FXML
     private Tooltip tooltipEU;
 
+    /** Tooltip para buttonES */
     @FXML
     private Tooltip tooltipES;
 
+    /** Tooltip para buttonEN */
     @FXML
     private Tooltip tooltipEN;
 
@@ -288,6 +298,10 @@ public class ControladorPrincipal implements Initializable {
         });
     }
 
+    /**
+     * Prepara el menu para cada fila de la tabla.
+     * @return ContextMenu menu
+     */
     private ContextMenu prepararMenu() {
         //Creamos un menu contextual y los elementos del menu
         ContextMenu menu = new ContextMenu();
@@ -318,6 +332,10 @@ public class ControladorPrincipal implements Initializable {
         return menu;
     }
 
+    /**
+     * Modificar la persona seleccionada
+     *
+     */
     private void modificarPersonaMenu() throws IOException {
         //Esto si el controlador necesita hacer algo en la ventana principal
         // Cargar el FXML de la ventana modal
@@ -344,6 +362,10 @@ public class ControladorPrincipal implements Initializable {
         tablaPersonas.getItems().setAll(items);
     }
 
+    /**
+     * Elimina la persona seleccionada
+     *
+     */
     private void eliminarPersonaMenu(){
         Personas personaEliminar = tablaPersonas.getSelectionModel().getSelectedItem();
         tablaPersonas.getSelectionModel().clearSelection();
@@ -353,7 +375,10 @@ public class ControladorPrincipal implements Initializable {
         alertaEliminar();
     }
 
-
+    /**
+     * Esto para que con el clic derecho se muestre by con el otro no se muestre
+     *
+     */
     public void alClicar(MouseEvent mouseEvent) {
         ContextMenu menu = prepararMenu();
         tablaPersonas.setContextMenu(menu);
