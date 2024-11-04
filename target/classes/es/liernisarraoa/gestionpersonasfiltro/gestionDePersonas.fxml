@@ -15,6 +15,7 @@
 <!-- Definición del contenedor principal BorderPane -->
 
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Tooltip?>
 <BorderPane stylesheets="@../../../CSS/estilos.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.liernisarraoa.gestionpersonasfiltro.Controladores.ControladorPrincipal">
    <!-- Región de la parte de arriba del BorderPane -->
    <top>
@@ -88,16 +89,25 @@
                <HBox.margin>
                   <Insets right="10.0" top="10.0" />
                </HBox.margin>
+               <tooltip>
+                  <Tooltip fx:id = "tooltipES" text="Cambia el idioma el Español." />
+               </tooltip>
             </Button>
             <Button fx:id="btnEU" mnemonicParsing="false" text="EU" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="10.0" top="10.0" />
                </HBox.margin>
+               <tooltip>
+                  <Tooltip fx:id = "tooltipEU" text="Cambia el idioma al Euskera." />
+               </tooltip>
             </Button>
             <Button fx:id="btnEN" mnemonicParsing="false" text="EN" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="10.0" top="10.0" />
                </HBox.margin>
+               <tooltip>
+                  <Tooltip fx:id = "tooltipEN" text="Cambia el idioma el Ingles." />
+               </tooltip>
             </Button>
          </children>
       </HBox>

@@ -92,6 +92,16 @@ public class ControladorPrincipal implements Initializable {
     @FXML
     private Label lblFiltro;
 
+    @FXML
+    private Tooltip tooltipEU;
+
+    @FXML
+    private Tooltip tooltipES;
+
+    @FXML
+    private Tooltip tooltipEN;
+
+
     /**
      * Maneja el evento de agregar una nueva persona.
      * Abre una ventana modal para introducir los datos de la nueva persona.
@@ -239,6 +249,9 @@ public class ControladorPrincipal implements Initializable {
                 btnAgregarPersona.setText(bundle.getString("boton.aniadir"));
                 btnModificarPersona.setText(bundle.getString("boton.modificar"));
                 btnEliminarPersona.setText(bundle.getString("boton.eliminar"));
+                tooltipEN.setText(bundle.getString("tooltip.EN"));
+                tooltipES.setText(bundle.getString("tooltip.ES"));
+                tooltipEU.setText(bundle.getString("tooltip.EU"));
             }
         });
         btnES.setOnAction(new EventHandler<ActionEvent>() {
@@ -252,6 +265,9 @@ public class ControladorPrincipal implements Initializable {
                 btnAgregarPersona.setText(bundle.getString("boton.aniadir"));
                 btnModificarPersona.setText(bundle.getString("boton.modificar"));
                 btnEliminarPersona.setText(bundle.getString("boton.eliminar"));
+                tooltipEN.setText(bundle.getString("tooltip.EN"));
+                tooltipES.setText(bundle.getString("tooltip.ES"));
+                tooltipEU.setText(bundle.getString("tooltip.EU"));
             }
         });
         btnEU.setOnAction(new EventHandler<ActionEvent>() {
@@ -265,6 +281,9 @@ public class ControladorPrincipal implements Initializable {
                 btnAgregarPersona.setText(bundle.getString("boton.aniadir"));
                 btnModificarPersona.setText(bundle.getString("boton.modificar"));
                 btnEliminarPersona.setText(bundle.getString("boton.eliminar"));
+                tooltipEN.setText(bundle.getString("tooltip.EN"));
+                tooltipES.setText(bundle.getString("tooltip.ES"));
+                tooltipEU.setText(bundle.getString("tooltip.EU"));
             }
         });
     }
