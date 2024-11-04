@@ -248,6 +248,25 @@ public class ControladorPrincipal implements Initializable {
         tablaPersonas.getItems().addAll(items);
         Image imagen = new Image(String.valueOf(GestionPersonas.class.getResource("/Imagenes/contactos.jpeg")));
         imagenContactos.setImage(imagen);
+        //Iconos botones
+        ImageView imageview = new ImageView(new Image("file:C:\\DM2\\DEIN\\ProyectosFX\\DEIN_EJERCICIOI_LSJ\\src\\main\\resources\\Imagenes\\plus.png"));
+        imageview.setFitWidth(20); // Ajusta el ancho de la imagen
+        imageview.setFitHeight(20); // Ajusta la altura de la imagen
+        imageview.setPreserveRatio(true); // Mantener la proporción de la imagen
+        btnAgregarPersona.setGraphic(imageview);
+        //btnModificar
+        imageview = new ImageView(new Image("file:C:\\DM2\\DEIN\\ProyectosFX\\DEIN_EJERCICIOI_LSJ\\src\\main\\resources\\Imagenes\\modificar.png"));
+        imageview.setFitWidth(20); // Ajusta el ancho de la imagen
+        imageview.setFitHeight(20); // Ajusta la altura de la imagen
+        imageview.setPreserveRatio(true); // Mantener la proporción de la imagen
+        btnModificarPersona.setGraphic(imageview);
+        //btnEliminar
+        imageview = new ImageView(new Image("file:C:\\DM2\\DEIN\\ProyectosFX\\DEIN_EJERCICIOI_LSJ\\src\\main\\resources\\Imagenes\\eliminar.png"));
+        imageview.setFitWidth(20); // Ajusta el ancho de la imagen
+        imageview.setFitHeight(20); // Ajusta la altura de la imagen
+        imageview.setPreserveRatio(true); // Mantener la proporción de la imagen
+        btnEliminarPersona.setGraphic(imageview);
+        //Idiommas
         btnEN.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
